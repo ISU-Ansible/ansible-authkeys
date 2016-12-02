@@ -1,0 +1,36 @@
+---
+- name: "[Authkeys] Create /root/.ssh"
+  tags:
+    - configuration
+    - authkeys
+  file:
+    path: "/{{item.destination}}/.ssh"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  with_items: authkeys_destination
+  when: authkeys_destination is defined and authkeys_destination is iterable
+
+
+- name: "[Authkeys] Install list of authorized_keys"
+  tags:
+    - configuration
+    - authkeys
+  authorized_key:
+      user: "{{item.username}}"
+      key: "{{item.public_key}}"
+      state: present
+  with_items: authkeys_public_keys
+  when: authkeys_destination.username in authkeys_public_keys.username
+
+- name: "[Authkeys] Remove keys from authorized_keys"
+  tags:
+    - configuraiton
+    - authkeys
+  authorized_key:
+      user: "{{item.username}}"
+      key: "{{item.public_key}}"
+      state: absent
+  with_items: authkeys_public_keys
+  when: authkeys_destination.username not in authkeys_public_keys.username

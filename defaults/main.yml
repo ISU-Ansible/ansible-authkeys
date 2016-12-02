@@ -1,0 +1,21 @@
+---
+#
+# This is where you need to put the public keys:
+#  - authkeys_public_keys.username is the remote username, that is -- the
+#    external user, that will be put into the appropriate location.
+#  - authkeys_public_keys.public_key contains the public key for the user
+#
+# The authkeys_destination links the public key with a location which to place
+# the key:
+#  - authkeys_destination.username links to authkeys_public_keys.username
+#  - authkeys_destination.destination is the home directory in which to place
+#    the key.
+#
+
+# authkeys_public_keys:
+#   - username: "root"
+#     public_key: "ssh-rsa blahblahblah comment"
+
+# authkeys_destination:
+#    - username: "root"
+#      destination: "root"

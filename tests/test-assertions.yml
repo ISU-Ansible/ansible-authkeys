@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  vars:
+    
+
+  roles:
+    - role_under_test
+
+  tasks:
+    - name: "[Test directory existence] Does /root/.ssh exist?"
+
+    - name: "[Test authorized_keys existence] Does /root/.ssh/authorized_keys exist?"
+
+    - name: "[Test key existence] Does the key exist?"
+
+#    - debug:
+#        var: sshd_configuration
+
+#    - assert:
+#        that:
+#         - "sshd_status.stdout.find('running')"
+#         - "sshd_configuration.stdout.find('without-password')"

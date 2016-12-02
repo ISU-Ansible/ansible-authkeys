@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  vars:
+    authkeys_public_keys:
+      - username: "root"
+        public_key: "ssh-rsa blahblahblah comment"
+
+    authkeys_destination:
+       - username: "root"
+         destination: "root"
+
+  roles:
+    - role_under_test
