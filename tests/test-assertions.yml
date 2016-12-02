@@ -26,7 +26,7 @@
     - name: "[Test authorized_keys existence] Does /root/.ssh/authorized_keys exist?"
       stat:
         path: /root/.ssh/authorized_keys
-      register: root_ssh_authorized-keys
+      register: root_ssh_authorized_keys
 
     - name: "[Test key exists] Does the root-root key exist?"
       shell: cat /root/.ssh/authorized_keys
@@ -36,12 +36,13 @@
         var: root_ssh
 
     - debug:
-        var: root_ssh_authorized-keys
+        var: root_ssh_authorized_keys
 
     - debug:
         var: authorized_keys
 
-#    - assert:
-#        that:
-#         - "sshd_status.stdout.find('running')"
-#         - "sshd_configuration.stdout.find('without-password')"
+    - assert:
+        that:
+         - "root_ssh.stat.exists and root_ssh.stat.is_dir"
+         - "'ssh-rsa root1 root-root' in authorized_keys.stdout"
+         - "'ssh-rsa root2 root-root-1' not in authorized_keys.stdout"
