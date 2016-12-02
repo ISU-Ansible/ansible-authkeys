@@ -19,7 +19,7 @@
         destination: "root"
         public_key: "ssh-rsa halbhalbhalb root-root-1"
 
-    authkeys_destination:
+    authkeys_enabled:
        - "root-root"
        - "root-root-1"
 

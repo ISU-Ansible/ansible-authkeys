@@ -11,7 +11,7 @@
         destination: "root"
         public_key: "ssh-rsa root2 root-root-1"
 
-    authkeys_destination:
+    authkeys_enabled:
        - "root-root"
 
   roles:
@@ -29,7 +29,7 @@
       register: root_ssh_authorized-keys
 
     - name: "[Test key exists] Does the root-root key exist?"
-      shell: grep "root1" /root/.ssh/authorized_keys
+      shell: grep root1 /root/.ssh/authorized_keys
       register: root1_key
 
     - name: "[Test key absence] Does the root-root-1 key not exist?"
