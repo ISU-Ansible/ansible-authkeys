@@ -4,19 +4,19 @@
     - configuration
     - authkeys
   authorized_key:
-      user: "{{item.username}}"
+      user: "{{item.destination}}"
       key: "{{item.public_key}}"
       state: present
   with_items: authkeys_public_keys
-  when: authkeys_destination.username in authkeys_public_keys.username
+  when: authkeys_public_keys.username in authkeys_enabled
 
 - name: "[Authkeys] Remove keys from authorized_keys"
   tags:
     - configuraiton
     - authkeys
   authorized_key:
-      user: "{{item.username}}"
+      user: "{{item.destination}}"
       key: "{{item.public_key}}"
       state: absent
   with_items: authkeys_public_keys
-  when: authkeys_destination.username not in authkeys_public_keys.username
+  when: authkeys_public_keys.username not in authkeys_enabled
