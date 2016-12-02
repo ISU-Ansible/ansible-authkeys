@@ -1,18 +1,4 @@
 ---
-- name: "[Authkeys] Create /root/.ssh"
-  tags:
-    - configuration
-    - authkeys
-  file:
-    path: "/{{item.destination}}/.ssh"
-    state: directory
-    owner: root
-    group: root
-    mode: 0700
-  with_items: authkeys_destination
-  when: authkeys_destination is defined and authkeys_destination is iterable
-
-
 - name: "[Authkeys] Install list of authorized_keys"
   tags:
     - configuration
