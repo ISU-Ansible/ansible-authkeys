@@ -41,5 +41,20 @@ script:
   # Test assertions.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test-assertions.yml'
 
+  - root1=$(mktemp)
+  - root2=$(mktemp)
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm grep root1 /root/.ssh/authorized_keys | tee -a ${root1}
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm grep root2 /root/.ssh/authorized_keys | tee -a ${root2}
+  - >
+    tail ${root1}
+    | grep -q 'root1'
+    && (echo "root1 found: pass" && exit 0)
+    || (echo "root1 not found: fail" && exit 1)
+  - >
+    tail ${root2}
+    | grep -q 'root2'
+    && (echo "root2 found: fail" && exit 1)
+    || (echo "root2 not found: fail" && exit 0)
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
