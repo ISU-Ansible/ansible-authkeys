@@ -29,19 +29,17 @@
       register: root_ssh_authorized-keys
 
     - name: "[Test key exists] Does the root-root key exist?"
-      shell: grep root1 /root/.ssh/authorized_keys
-      register: root1_key
-
-    - name: "[Test key absence] Does the root-root-1 key not exist?"
-      shell: grep root2 /root/.ssh/authorized_keys
-      register: root2_key
+      shell: cat /root/.ssh/authorized_keys
+      register: authorized-keys
 
     - debug:
-        var: root1_key
+        var: root_ssh
 
     - debug:
-        var: root2_key
+        var: root_ssh_authorized-keys
 
+    - debug:
+        var: authorized-keys
 
 #    - assert:
 #        that:

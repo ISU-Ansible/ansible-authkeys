@@ -40,10 +40,5 @@ script:
   # Test assertions.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test-assertions.yml'
 
-after_failure:
-  # Check what happened on systemd systems.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l status ${service_name}'
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm journalctl -xe --no-pager'
-
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
