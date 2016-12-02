@@ -18,11 +18,11 @@ Users are encouraged to modify the role variables inside their group_vars folder
 ### Description
 This role does the following:
 
-1. Creates the directory /\<user\>/.ssh
-1. Creates the appropriate authorized key in /\<user\>/.ssh/authorized_keys
+1. Creates the directory '''/\<user\>/.ssh'''
+1. Creates the appropriate authorized key in '''/\<user\>/.ssh/authorized_keys'''
 
 ### Changed Files
-- /\<user\>/.ssh/authorized_keys
+- '''/\<user\>/.ssh/authorized_keys'''
 
 ### Installed Programs
 No programs are installed
