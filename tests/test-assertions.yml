@@ -3,20 +3,45 @@
   remote_user: root
 
   vars:
-    
+    authkeys_public_keys:
+      - username: "root-root"
+        destination: "root"
+        public_key: "ssh-rsa root1 root-root"
+      - username: "root-root-1"
+        destination: "root"
+        public_key: "ssh-rsa root2 root-root-1"
+
+    authkeys_destination:
+       - "root-root"
 
   roles:
     - role_under_test
 
   tasks:
     - name: "[Test directory existence] Does /root/.ssh exist?"
+      stat:
+        path: /root/.ssh
+      register: root_ssh
 
     - name: "[Test authorized_keys existence] Does /root/.ssh/authorized_keys exist?"
+      stat:
+        path: /root/.ssh/authorized_keys
+      register: root_ssh_authorized-keys
 
-    - name: "[Test key existence] Does the key exist?"
+    - name: "[Test key exists] Does the root-root key exist?"
+      shell: grep "root1" /root/.ssh/authorized_keys
+      register: root1_key
 
-#    - debug:
-#        var: sshd_configuration
+    - name: "[Test key absence] Does the root-root-1 key not exist?"
+      shell: grep "root2" /root/.ssh/authorized_keys
+      register: root2_key
+
+    - debug:
+        var: root1_key
+
+    - debug:
+        var: root2_key
+
 
 #    - assert:
 #        that:

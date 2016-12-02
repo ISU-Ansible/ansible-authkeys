@@ -14,10 +14,14 @@
     authkeys_public_keys:
       - username: "root-root"
         destination: "root"
-        public_key: "ssh-rsa blahblahblah comment"
+        public_key: "ssh-rsa blahblahblah root-root"
+      - username: "root-root-1"
+        destination: "root"
+        public_key: "ssh-rsa halbhalbhalb root-root-1"
 
     authkeys_destination:
        - "root-root"
+       - "root-root-1"
 
   roles:
     - role_under_test
