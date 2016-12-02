@@ -33,7 +33,7 @@
       register: root1_key
 
     - name: "[Test key absence] Does the root-root-1 key not exist?"
-      shell: grep "root2" /root/.ssh/authorized_keys
+      shell: grep root2 /root/.ssh/authorized_keys
       register: root2_key
 
     - debug:
