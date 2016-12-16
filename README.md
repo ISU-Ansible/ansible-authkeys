@@ -1,7 +1,9 @@
-# Authorized Keys
+Authorized Keys
+===============
 Installs authorized_keys files for users.
 
-## Variables
+Variables
+---------
 
 ### Global Variables
 No global variables are used in this role.
