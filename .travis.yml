@@ -15,7 +15,7 @@ services:
   - docker
 
 before_install:
-  - 'docker pull geerlingguy/docker-${distro}-ansible:latest'
+  - 'docker pull isuansible/docker-${distro}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
@@ -57,4 +57,14 @@ script:
     || (echo "root2 not found: fail" && exit 0)
 
 notifications:
+  email: false
+  irc:
+    channels:
+      - "chat.freenode.net#isudevops"
+    on_success: always
+    on_failure: change
+    use_notice: true
+    template:
+      - "%{repository_name}#%{build_number} [%{author}] (%{commit}): %{message} %{foo} "
+      - "Build details: %{build_url}"
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

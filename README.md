@@ -15,7 +15,8 @@ No global variables are used in this role.
 ### User Variables
 Users are encouraged to modify the role variables inside their group_vars folder.
 
-## Tasks
+Tasks
+-----
 
 ### Description
 This role does the following:
@@ -29,8 +30,8 @@ This role does the following:
 ### Installed Programs
 No programs are installed
 
-## Example
-
+Example
+-------
 Authorized Keys playbook
 
     - name: Authorized Keys Ansible Playbook
