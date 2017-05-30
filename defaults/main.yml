@@ -20,6 +20,8 @@
 # authkeys_public_keys:
 #   - name: "rootkey"
 #     destination: "root"
+#     manage_dir: yes
+#     exclusive: no
 #     public_key: "ssh-rsa key comment"
 
 # authkeys_enabled:

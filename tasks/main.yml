@@ -6,6 +6,8 @@
   authorized_key:
       user: "{{ item.destination | default('root') }}"
       key: "{{ item.public_key }}"
+      manage_dir: "{{ item.manage_dir | default('yes') }}""
+      exclusive: "{{ item.exclusive | default('no') }}"
       state: present
   with_items:
     - "{{ authkeys_public_keys }}"
