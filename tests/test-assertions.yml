@@ -4,13 +4,13 @@
 
   vars:
     authkeys_public_keys:
-      - username: "rootkey"
-        destination: "root"
+      - name: "rootkey"
+        user: "root"
         manage_dir: yes
         exclusive: no
         public_key: "ssh-rsa root1 rootkey"
-      - username: "otherkey"
-        destination: "root"
+      - name: "otherkey"
+        user: "root"
         manage_dir: yes
         exclusive: no
         public_key: "ssh-rsa root2 otherkey"
@@ -18,11 +18,11 @@
       - "rootkey"
 
   pre_tasks:
-    - name: AUTHKEYS | Create user directory
+    - name: AUTHKEYS | Create ssh directory
       file:
-        path: /root
-        owner: root
-        group: root
+        path: "/root/.ssh"
+        owner: "root"
+        group: "root"
         mode: "0700"
         state: directory
 

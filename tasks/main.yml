@@ -4,7 +4,7 @@
     - configuration
     - authkeys
   authorized_key:
-    user: "{{ item.destination }}"
+    user: "{{ item.user }}"
     key: "{{ item.public_key }}"
     manage_dir: "{{ item.manage_dir | default('yes') }}"
     exclusive: "{{ item.exclusive | default('no') }}"
@@ -18,7 +18,7 @@
     - configuration
     - authkeys
   authorized_key:
-    user: "{{ item.destination }}"
+    user: "{{ item.user }}"
     key: "{{ item.public_key }}"
     state: absent
   with_items:
