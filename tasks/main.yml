@@ -1,17 +1,17 @@
 ---
-- name: "[Authkeys] Install list of authorized_keys"
+- name: AUTHKEYS | Install list of authorized_keys
   tags:
     - configuration
     - authkeys
   authorized_key:
-      user: "{{ item.destination | default("root") }}"
+      user: "{{ item.destination | default('root') }}"
       key: "{{ item.public_key }}"
       state: present
   with_items:
-    - "{{authkeys_public_keys}}"
+    - "{{ authkeys_public_keys }}"
   when: item.name is defined and item.name in authkeys_enabled
 
-- name: "[Authkeys] Remove keys from authorized_keys"
+- name: AUTHKEYS | Remove keys from authorized_keys
   tags:
     - configuraiton
     - authkeys
@@ -20,5 +20,5 @@
       key: "{{ item.public_key }}"
       state: absent
   with_items:
-    - "{{authkeys_public_keys}}"
+    - "{{ authkeys_public_keys }}"
   when: item.name is defined and item.name not in authkeys_enabled
