@@ -14,7 +14,6 @@
         manage_dir: yes
         exclusive: no
         public_key: "ssh-rsa root2 otherkey"
-
     authkeys_enabled:
        - "rootkey"
 
