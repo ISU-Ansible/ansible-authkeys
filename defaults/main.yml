@@ -14,13 +14,13 @@
 #    key will be applied.
 #  - authkeys_public_keys.public_key contains the public key for the user.
 #
-# The authkeys_enabled variable
+# The authkeys_enabled variable contains a list of
 #
 
 # authkeys_public_keys:
-#   - username: "root-root"
+#   - name: "rootkey"
 #     destination: "root"
 #     public_key: "ssh-rsa key comment"
 
 # authkeys_enabled:
-#    - "root-root"
+#    - "rootkey"

@@ -2,26 +2,19 @@
 - hosts: localhost
   remote_user: root
 
-  # authkeys_public_keys:
-  #   - username: "root-root"
-  #     destination: "root"
-  #     public_key: "ssh-rsa key comment"
-
-  # authkeys_enabled:
-  #    - "root-root"
-
   vars:
     authkeys_public_keys:
-      - username: "root-root"
+      - username: "rootkey"
         destination: "root"
-        public_key: "ssh-rsa blahblahblah root-root"
-      - username: "root-root-1"
+        public_key: "ssh-rsa root1 rootkey"
+      - username: "otherkey"
         destination: "root"
-        public_key: "ssh-rsa halbhalbhalb root-root-1"
+        public_key: "ssh-rsa root2 otherkey"
+
 
     authkeys_enabled:
-       - "root-root"
-       - "root-root-1"
+       - "rootkey"
+       - "otherkey"
 
   roles:
     - role_under_test

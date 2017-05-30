@@ -4,15 +4,31 @@
 
   vars:
     authkeys_public_keys:
-      - username: "root-root"
+      - username: "rootkey"
         destination: "root"
-        public_key: "ssh-rsa root1 root-root"
-      - username: "root-root-1"
+        public_key: "ssh-rsa root1 rootkey"
+      - username: "otherkey"
         destination: "root"
-        public_key: "ssh-rsa root2 root-root-1"
+        public_key: "ssh-rsa root2 otherkey"
 
     authkeys_enabled:
-       - "root-root"
+       - "rootkey"
 
   roles:
     - role_under_test
+
+  tasks:
+    - name: AUTHKEYS | Checking existence of root1 key
+      command: grep root1 /root/.ssh/authorized_keys
+      register: root1_result
+      ignore_errors: True
+
+    - name: AUTHKEYS | Checking absense of root2 key
+      command: grep root2 /root/.ssh/authorized_keys
+      register: root2_result
+      ignore_errors: True
+
+    - assert:
+        that:
+          - "root1_result.rc == 0"
+          - "root2_result.rc != 0"
