@@ -10,11 +10,19 @@
       - username: "otherkey"
         destination: "root"
         public_key: "ssh-rsa root2 otherkey"
-
-
     authkeys_enabled:
-       - "rootkey"
-       - "otherkey"
+      - "rootkey"
+      - "otherkey"
+
+  pre_tasks:
+    - name: AUTHKEYS | Create user directory
+      file:
+        path: /root
+        owner: root
+        group: root
+        mode: "0700"
+        state: directory
+
 
   roles:
     - role_under_test
