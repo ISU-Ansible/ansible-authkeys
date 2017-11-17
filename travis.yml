@@ -1,0 +1,11 @@
+---
+sudo: required
+langauge: python
+
+services:
+  - docker
+
+install:
+  - pip install molecule
+# vim: autoindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab tw=80
+# filetype=yml
