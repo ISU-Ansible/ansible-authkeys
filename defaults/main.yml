@@ -26,3 +26,7 @@
 
 # authkeys_enabled:
 #    - "rootkey"
+
+authkeys_public_keys: []
+authkeys_enabled: []
+authkeys_disabled: []
